@@ -16,6 +16,17 @@ def select_all():
         books.append(book)
     return books
 
+def select(id):
+    book = None
+    sql = "SELECT * FROM books WHERE id = %s"
+    values = [id]
+    result = run_sql(sql, values)[0]
+    if result is not None:
+        author = author_repository.select(result['author_id'])
+        book = Book(result['title'], result['genre'], author, result['page_count'], result['completed'], result['id'])
+    return book
+
+
 def save(book):
     sql = "INSERT INTO books (title, genre, author_id, page_count, completed) VALUES (%s, %s, %s, %s, %s) RETURNING *"
     values = [book.title, book.genre, book.author.id, book.page_count, book.completed]
