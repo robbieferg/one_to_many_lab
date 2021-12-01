@@ -5,11 +5,18 @@ from models.book import Book
 import repositories.author_repository as author_repository
 import repositories.book_repository as book_repository
 
+book_repository.delete_all()
+author_repository.delete_all()
+
+
 author_1 = Author("Stephen", "King")
 author_repository.save(author_1)
 
 author_2 = Author("J.R.R.", "Tolkien")
 author_repository.save(author_2)
+
+author_3 = Author("J.D.", "Salinger")
+author_repository.save(author_3)
 
 book_1 = Book("The Shining", "horror", author_1, 350)
 book_repository.save(book_1)
