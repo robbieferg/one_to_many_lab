@@ -15,7 +15,7 @@ def select(id):
     return author
 
 def save(author):
-    sql = "INSERT INTO authors (first_name, last_name) (%s, %s) RETURNING *"
+    sql = "INSERT INTO authors (first_name, last_name) VALUES (%s, %s) RETURNING *"
     values = [author.first_name, author.last_name]
     results = run_sql(sql, values)
     id = results[0]['id']

@@ -2,7 +2,7 @@ class Book:
     def __init__(self, title, genre, author, page_count, completed = False, id = None):
         self.title = title
         self.genre = genre
-        self.auhtor = author
+        self.author = author
         self.page_count = page_count
         self.completed = completed
         self.id = id

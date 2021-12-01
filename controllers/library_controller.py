@@ -6,3 +6,7 @@ from flask import Blueprint
 
 library_blueprint = Blueprint("library", __name__)
 
+@library_blueprint.route("/books")
+def books():
+    books = book_repository.select_all()
+    return render_template("books/index.html", books = books)
