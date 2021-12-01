@@ -15,3 +15,11 @@ def select_all():
         book = Book(row['title'], row['genre'], author, row['page_count'], row['completed'], row['id'])
         books.append(book)
     return books
+
+def save(book):
+    sql = "INSERT INTO books (title, genre, author_id, page_count, completed) VALUES (%s, %s, %s, %s, %s) RETURNING *"
+    values = [book.title, book.genre, book.author.id, book.page_count, book.completed]
+    results = run_sql(sql, values)
+    id = results[0]['id']
+    book.id = id
+    return book

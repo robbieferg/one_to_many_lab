@@ -13,3 +13,11 @@ def select(id):
     if result is not None:
         author = Author(result['first_name'], result['last_name'], result['id'])
     return author
+
+def save(author):
+    sql = "INSERT INTO authors (first_name, last_name) (%s, %s) RETURNING *"
+    values = [author.first_name, author.last_name]
+    results = run_sql(sql, values)
+    id = results[0]['id']
+    author.id = id
+    return author
