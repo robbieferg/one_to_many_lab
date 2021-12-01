@@ -3,7 +3,8 @@
     {% for book in books %}
         <div class="book">
             <div class="content">
-                {{ book.title }} {{ book.genre }} {{ book.author.first_name }} {{ book.author.last_name }} {{ book.page_count }} {{ book.completed }}
+                <b>Title: </b>{{ book.title }} <b>Genre: </b> {{ book.genre }} <b>Author: </b> {{ book.author.first_name }} {{ book.author.last_name }} <b>Page Count: </b> {{ book.page_count }} <b>Book Completed? </b> {{ book.completed }}
+                <form class="delete-form" action="/books/{{ book.id }}/delete" method='POST'><button class=delete-button>Delete</button></form>
             </div>
 
         </div>
